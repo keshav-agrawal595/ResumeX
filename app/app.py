@@ -122,6 +122,16 @@ st.set_page_config(
 )
 
 
+def print_praise():
+        praise_quotes = """
+        Keshav Agrawal
+    2nd year Student
+    B.Tech(Hons) CSE AI-ML
+        """
+        title = "**Developed By -**\n\n"
+        return title + praise_quotes
+
+
 ###### Main function run() ######
 
 
@@ -136,79 +146,11 @@ def run():
     img = Image.open('./Logo/land_resumex_1.jpeg')
     st.image(img,caption='ResumeX : Unlock Your Next Opportunity')
 
-    st.markdown("---")
-
-    st.subheader("**About ResumeX**")
-
-    def about():
-
-        st.markdown('''
-
-# **About ResumeX**
-
-Welcome to **ResumeX** – your intelligent AI-Resume Analyzer designed to help you craft the perfect resume! With ResumeX, you can easily extract all the essential information from your resume and receive personalized recommendations to elevate your career profile. Here’s what ResumeX offers:
-
-### 📝 **Your Basic Info**
-<p>ResumeX starts by identifying and organizing your basic details, ensuring all the necessary information is captured accurately.</p>
-
-### 📊 **Level**
-<p>Understand where you stand! ResumeX evaluates your current experience level, helping you see how your resume positions you in the job market.</p>
-
-### 💡 **Skills Recommendation**
-<p>Unlock your potential with skills tailored to your profile. ResumeX analyzes your resume and suggests key skills that can make your resume shine.</p>
-
-### 🔍 **Recommended Skills**
-<p>Based on your industry and role, ResumeX recommends additional skills that can boost your employability and set you apart from the competition.</p>
-
-### 🎓 **Courses & Certificates Recommendations**
-<p>Looking to upskill? ResumeX provides curated recommendations for courses and certifications that can enhance your qualifications.</p>
-
-### ✨ **Resume Tips & Ideas**
-<p>Get professional advice on how to refine your resume with practical tips and creative ideas that make a difference.</p>
-
-### 🏆 **Resume Score**
-<p>Measure your resume's effectiveness! ResumeX assigns a score to your resume, giving you insight into how well it aligns with job requirements.</p>
-
-### 🎥 **Bonus Videos for Resume Writing**
-<p>Enjoy exclusive access to expert videos on resume writing. Learn the dos and don’ts to ensure your resume is impactful.</p>
-
----
-
-### **Sidebar Navigation:**
-- **User**: Access all the features of ResumeX by clicking this option.
-- **Feedback**: Share your experience and help us improve by providing your feedback here.
-- **Admin**: Reserved for administrators to manage and oversee the platform.
-
----
-
-### **Why Choose ResumeX?**
-With **ResumeX**, you’re not just analyzing a resume – you’re strategically crafting a document that opens doors to new opportunities. Our AI-driven insights and recommendations empower you to present your skills and experiences in the best possible light, ensuring you’re ready for your next career move. 🚀
-
-Join the ResumeX community today and take the next step towards your dream job!
-
-
-    ''',unsafe_allow_html=True)  
-
-    with st.expander("About ResumeX",icon=":material/info:"):
-        about()
-    st.markdown("---")
-
     
     st.sidebar.markdown("# Choose Something...")
-    # activities = ["User", "Feedback", "Admin"]
-    choice = st.sidebar.selectbox("Choose among the given options:", ("User", "Feedback", "Admin "),
-                                  index=None,placeholder="Select Any Option...")
+    activities = ["About", "User", "Feedback", "Admin"]
+    choice = st.sidebar.selectbox("Choose among the given options:", activities)
 
-
-    def print_praise():
-        praise_quotes = """
-        Keshav Agrawal
-    2nd year Student
-    B.Tech(Hons) CSE AI-ML
-        """
-        title = "**Developed By -**\n\n"
-        return title + praise_quotes
-    
     with st.sidebar:    
         st.write("---\n")
         st.success(print_praise())   
@@ -295,13 +237,64 @@ Join the ResumeX community today and take the next step towards your dream job!
     cursor.execute(tablef_sql)
 
 
+    ###### CODE FOR ABOUT PAGE ######
+
+    if choice == 'About':
+        
+        st.markdown('''
+
+            # **About ResumeX**
+
+            Welcome to **ResumeX** – your intelligent AI-Resume Analyzer designed to help you craft the perfect resume! With ResumeX, you can easily extract all the essential information from your resume and receive personalized recommendations to elevate your career profile. Here’s what ResumeX offers:
+
+            ### 📝 **Your Basic Info**
+            <p>ResumeX starts by identifying and organizing your basic details, ensuring all the necessary information is captured accurately.</p>
+
+            ### 📊 **Level**
+            <p>Understand where you stand! ResumeX evaluates your current experience level, helping you see how your resume positions you in the job market.</p>
+
+            ### 💡 **Skills Recommendation**
+            <p>Unlock your potential with skills tailored to your profile. ResumeX analyzes your resume and suggests key skills that can make your resume shine.</p>
+
+            ### 🔍 **Recommended Skills**
+            <p>Based on your industry and role, ResumeX recommends additional skills that can boost your employability and set you apart from the competition.</p>
+
+            ### 🎓 **Courses & Certificates Recommendations**
+            <p>Looking to upskill? ResumeX provides curated recommendations for courses and certifications that can enhance your qualifications.</p>
+
+            ### ✨ **Resume Tips & Ideas**
+            <p>Get professional advice on how to refine your resume with practical tips and creative ideas that make a difference.</p>
+
+            ### 🏆 **Resume Score**
+            <p>Measure your resume's effectiveness! ResumeX assigns a score to your resume, giving you insight into how well it aligns with job requirements.</p>
+
+            ### 🎥 **Bonus Videos for Resume Writing**
+            <p>Enjoy exclusive access to expert videos on resume writing. Learn the dos and don’ts to ensure your resume is impactful.</p>
+
+            ---
+
+            ### **Sidebar Navigation:**
+            - **User**: Access all the features of ResumeX by clicking this option.
+            - **Feedback**: Share your experience and help us improve by providing your feedback here.
+            - **Admin**: Reserved for administrators to manage and oversee the platform.
+
+            ---
+
+            ### **Why Choose ResumeX?**
+            With **ResumeX**, you’re not just analyzing a resume – you’re strategically crafting a document that opens doors to new opportunities. Our AI-driven insights and recommendations empower you to present your skills and experiences in the best possible light, ensuring you’re ready for your next career move. 🚀
+
+            Join the ResumeX community today and take the next step towards your dream job!
+
+
+       ''',unsafe_allow_html=True) 
+        
     ###### CODE FOR CLIENT SIDE (USER) ######
 
-    if choice == "User":
+    elif choice == 'User':
         
         # Collecting Miscellaneous Information
         act_name = st.text_input('Name*')
-        act_mail = st.text_input('E-Mail*')
+        act_mail = st.text_input('Mail*')
         act_mob  = st.text_input('Mobile Number*')
         sec_token = secrets.token_urlsafe(12)
         host_name = socket.gethostname()
@@ -326,11 +319,8 @@ Join the ResumeX community today and take the next step towards your dream job!
         
         ## file upload in pdf format
         pdf_file = st.file_uploader("Choose your Resume", type=["pdf"])
-
-        if not (act_name and act_mail and act_mob and pdf_file is not None):
-            st.error("Please fill in all the Required Fields")
-        else:
-            with st.spinner('Hang On! While ResumeX does its Magic For You...'):
+        if pdf_file is not None:
+            with st.spinner('Hang On While We Cook Magic For You...'):
                 time.sleep(4)
         
             ### saving the uploaded resume to folder
@@ -666,7 +656,7 @@ Join the ResumeX community today and take the next step towards your dream job!
 
 
     ###### CODE FOR FEEDBACK SIDE ######
-    elif choice == "Feedback":   
+    elif choice == 'Feedback':   
         
         # timestamp 
         ts = time.time()
@@ -716,9 +706,9 @@ Join the ResumeX community today and take the next step towards your dream job!
         dff = pd.DataFrame(plfeed_cmt_data, columns=['User', 'Comment'])
         st.dataframe(dff, width=1000)
 
-
-    ###### CODE FOR ADMIN SIDE (ADMIN) ######
-    elif choice == "Admin":
+    
+###### CODE FOR ADMIN SIDE (ADMIN) ######
+    elif choice == 'Admin':
         st.success('Welcome to Admin Side')
 
         #  Admin Login
@@ -737,7 +727,7 @@ Join the ResumeX community today and take the next step towards your dream job!
                 
                 ### Total Users Count with a Welcome Message
                 values = plot_data.Idt.count()
-                st.success("Welcome Keshav ! Total %d " % values + " User's Have Used Our Tool : )")                
+                st.success(f"Welcome Admin! Total {values} User's Have Used Our Tool :)")                
                 
                 ### Fetch user data from user_data(table) and convert it into dataframe
                 cursor.execute('''SELECT ID, sec_token, ip_add, act_name, act_mail, act_mob, convert(Predicted_Field using utf8), Timestamp, Name, Email_ID, resume_score, Page_no, pdf_name, convert(User_level using utf8), convert(Actual_skills using utf8), convert(Recommended_skills using utf8), convert(Recommended_courses using utf8), city, state, country, latlong, os_name_ver, host_name, dev_user from user_data''')
@@ -766,7 +756,7 @@ Join the ResumeX community today and take the next step towards your dream job!
                 ### query to fetch data from user_feedback(table)
                 query = 'select * from user_feedback'
                 plotfeed_data = pd.read_sql(query, connection)                        
-
+                      
                 ### Analyzing All the Data's in pie charts
 
                 # fetching feed_score from the query and getting the unique values and total value count 
@@ -844,8 +834,12 @@ Join the ResumeX community today and take the next step towards your dream job!
             ## For Wrong Credentials
             else:
                 st.error("Wrong ID & Password Provided")
+
+    # Add an else clause to handle unexpected choices
     else:
-        st.sidebar.write("Select a valid option")
+        st.error("Invalid choice. Please select a valid option from the sidebar.")
+
 
 # Calling the main (run()) function to make the whole process run
-run()
+if __name__ == "__main__":
+    run()
